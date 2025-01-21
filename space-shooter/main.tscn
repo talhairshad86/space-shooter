@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://0sysdjes5n3l"]
+
+[ext_resource type="PackedScene" uid="uid://cai8u55ed5xuq" path="res://scenes/debug.tscn" id="1_k2lcs"]
+[ext_resource type="Script" path="res://main.gd" id="1_x4oec"]
+[ext_resource type="PackedScene" uid="uid://d0u8nqm6qhowi" path="res://scenes/HUD.tscn" id="2_ialof"]
+[ext_resource type="PackedScene" uid="uid://clqfw8mxm538i" path="res://scenes/player.tscn" id="3_yadk5"]
+[ext_resource type="PackedScene" uid="uid://bipvqr5s5gq3y" path="res://scenes/boundary.tscn" id="5_nr0u3"]
+
+[sub_resource type="Environment" id="Environment_82av7"]
+background_mode = 1
+
+[node name="MainRoot" type="Node3D"]
+script = ExtResource("1_x4oec")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 130, 0)
+fov = 30.0
+
+[node name="debug" parent="." instance=ExtResource("1_k2lcs")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 1.0
+grow_vertical = 0
+
+[node name="Hud" parent="." instance=ExtResource("2_ialof")]
+
+[node name="player" parent="." instance=ExtResource("3_yadk5")]
+
+[node name="Boundary" parent="." instance=ExtResource("5_nr0u3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_82av7")

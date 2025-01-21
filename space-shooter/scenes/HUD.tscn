@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0u8nqm6qhowi"]
+
+[ext_resource type="FontFile" uid="uid://brgwdkfxroi3e" path="res://fonts/BrunoAceSC-Regular.ttf" id="1_lqljw"]
+
+[node name="Hud" type="CanvasLayer"]
+
+[node name="Player" type="MarginContainer" parent="."]
+offset_right = 399.0
+offset_bottom = 49.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="Player"]
+layout_mode = 2
+columns = 2
+
+[node name="HullIntegrityLabel" type="Label" parent="Player/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lqljw")
+theme_override_font_sizes/font_size = 20
+text = "Hull Integrity"
+
+[node name="HullIntegrityBar" type="ProgressBar" parent="Player/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_lqljw")
+value = 100.0
+
+[node name="ShieldPowerLabel" type="Label" parent="Player/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lqljw")
+theme_override_font_sizes/font_size = 20
+text = "Shield Power"
+
+[node name="ShieldPowerBar" type="ProgressBar" parent="Player/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_lqljw")
+value = 100.0
