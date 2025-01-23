@@ -35,10 +35,11 @@ func spawn_star(root_node, on_top):
 		boundary.top - boundary_margin if on_top else randf_range(boundary.top, boundary.bottom),
 		randf_range(0.02, 0.2)
 	)
+	root_node.add_child(star)
 
 func process_background(root_node, delta):
 	for small_star in get_tree().get_nodes_in_group("small_star"):
-		small_star.global.position.z += small_star.vertical_speed * delta
+		small_star.global_position.z += small_star.vertical_speed * delta
 		var z = small_star.position.z
 		if z > boundary.bottom + boundary_margin:
 			small_star.queue_free()

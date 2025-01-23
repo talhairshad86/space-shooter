@@ -12,7 +12,7 @@ rings = 1
 is_hemisphere = true
 
 [node name="small_star" type="Node3D" groups=["small_star"]]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["small_star"]]
-mesh = SubResource("SphereMesh_ka5xc")
 script = ExtResource("1_di6fs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ka5xc")
