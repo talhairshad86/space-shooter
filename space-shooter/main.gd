@@ -12,7 +12,9 @@ func _ready():
 		$"Boundary/BottomWall".position.z
 	)
 	GameManager.spawn_stars(self)
+	GameManager.spawn_asteroids(self)
 	debug_overlay.init(player)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

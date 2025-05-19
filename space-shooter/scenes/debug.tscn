@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cai8u55ed5xuq"]
 
 [ext_resource type="FontFile" uid="uid://gyedhtmgb1ma" path="res://fonts/source-sans-pro-regular.ttf" id="1_lg60o"]
-[ext_resource type="Script" path="res://scenes/debug.gd" id="2_yp7xo"]
+[ext_resource type="Script" uid="uid://6ih5vcnqre1a" path="res://scenes/debug.gd" id="2_yp7xo"]
 
 [node name="Debug" type="Label"]
 theme_override_fonts/font = ExtResource("1_lg60o")

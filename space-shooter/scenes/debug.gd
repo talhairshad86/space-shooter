@@ -9,6 +9,7 @@ var FPS = 0
 var draw_calls = 0
 var frame_time = 0
 var VRAM = 0
+var enemy_count = 0
 var small_star_count = 0
 var player
 
@@ -30,10 +31,12 @@ func _process(delta: float) -> void:
 	frame_time = delta
 	VRAM = RenderingServer.get_rendering_info(v) / 1024.0 / 1024.0
 	small_star_count = get_tree().get_nodes_in_group("small_star").size()
+	enemy_count = get_tree().get_nodes_in_group("enemy").size()
 	var data = "FPS: " + str(FPS) + "\n" + \
 	"Draw calls: " + str(draw_calls) + "\n" + \
 	"Frame time: " + str(frame_time) + "\n" + \
 	"Small stars: " + str(small_star_count) + "\n" + \
+	"Enemies: " + str(enemy_count) + "\n" + \
 	"VRAM: " + str(VRAM) + "\n"
 	if Utils.is_valid_node(player):
 		data += "Position: " + str(player.global_position) + "\n" + \
