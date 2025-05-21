@@ -2,6 +2,27 @@ extends Node
 
 @onready var small_star_scene = preload("res://scenes/small_star.tscn")
 @onready var asteroid_scene = preload("res://scenes/asteroid.tscn")
+@onready var bullet_scene = preload("res://scenes/bullet.tscn")
+@onready var explosion_scene = preload("res://scenes/explosion.tscn")
+@onready var hit_effect_scene = preload("res://scenes/hit_effect.tscn")
+
+func create_hit_effect(root_node, enemy, bullet):
+	var hit_effect = hit_effect_scene.instantiate()
+	hit_effect.init(bullet.position.x, bullet.position.z)
+	root_node.add_child(hit_effect)
+	if enemy.is_in_group("metal"):
+		SoundManager.metal_hit_effect()
+	else:
+		SoundManager.rock_hit_effect()
+
+func create_explosion(root_node, source_node, width, height):
+	var explosion = explosion_scene.instantiate()
+	var speed = 1.0
+	explosion.init(source_node.global_transform.origin.x, source_node.global_transform.origin.z, width, height, speed)
+	root_node.add_child(explosion)
+	SoundManager.explode()
+	source_node.queue_free()
+
 var boundary = {
 	"left": 0.0,
 	"right": 0.0,
@@ -9,6 +30,18 @@ var boundary = {
 	"bottom": 0.0,
 }
 var boundary_margin = 10.0
+var player
+
+func set_player(_player):
+	player = _player
+
+func fire_player_weapon(root_node):
+	for weapon in player.weapons:
+		if weapon.active:
+			var bullet = bullet_scene.instantiate()
+			bullet.init(weapon)
+			root_node.add_child(bullet)
+	SoundManager.fire_bullet()
 
 func set_boundary(left, right, top, bottom):
 	boundary.left = left
@@ -48,6 +81,7 @@ func process_background(root_node, delta):
 func spawn_asteroids(root_node):
 	for i in 5:
 		var spawn = {
+			"hit_points": 20,
 			"coords": Vector3(-40 + i * 20, 0, -30),
 			"scale": Utils.get_random_vector3_in_range(1, 4),
 			"direction": Vector3(0, 0, randf_range(5.0, 15.0)),

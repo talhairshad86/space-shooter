@@ -1,6 +1,18 @@
 extends CharacterBody3D
 
+@onready var weapons_node: Node3D = $Weapons
+
+var weapons = []
+
 const SPEED = 30.0
+
+signal player_destroyed()
+
+func init():
+	for weapon in weapons_node.get_children():
+		if weapon.name == "Main":
+			weapon.active = true
+		weapons.append(weapon)
 
 func _physics_process(_delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -16,6 +28,5 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
-
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	print(area)
+	player_destroyed.emit()

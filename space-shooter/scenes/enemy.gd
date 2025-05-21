@@ -10,4 +10,7 @@ func _process(delta):
 	lifecycle.process(self, delta)
 
 func _on_area_entered(area: Area3D) -> void:
-	print(area)
+	if area.is_in_group("bullet"):
+		lifecycle.process_hit(self, area)
+		# remove the bullet
+		area.queue_free()

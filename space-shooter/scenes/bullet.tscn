@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnm8p8dt23ag6"]
+
+[ext_resource type="PackedScene" uid="uid://cbkspx8xnr384" path="res://models/bullet.glb" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://df6o5w17x6tnt" path="res://scenes/bullet.gd" id="2_y25gk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mkf8s"]
+radius = 0.35
+
+[node name="bullet" groups=["bullet"] instance=ExtResource("1_mkf8s")]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("2_y25gk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.215108)
+shape = SubResource("CylinderShape3D_mkf8s")

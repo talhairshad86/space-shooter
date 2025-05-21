@@ -1,11 +1,16 @@
 class_name Lifecycle
 extends Node
 
+signal enemy_destroyed(source_node)
+signal bullet_hit(enemy, bullet)
+
 var spawn = {}
 var elapsed_time = 0.0
 var current_direction
 var current_rotation
 var speed
+var max_hit_points = 0.0
+var hit_points = 0.0
 
 func init(root_node, enemy, _spawn):
 	spawn = _spawn
@@ -14,6 +19,20 @@ func init(root_node, enemy, _spawn):
 	current_direction = spawn.direction
 	speed = current_direction.length()
 	current_rotation = spawn.rotation
+	hit_points = spawn.hit_points
+	max_hit_points = hit_points
+	connect("enemy_destroyed", Callable(root_node, "_on_enemy_destroyed"))
+	connect("bullet_hit", Callable(root_node, "_on_show_hit_effect"))
+
+func process_hit(enemy, area):
+	hit_points -= area.hit_points
+	bullet_hit.emit(enemy, area)
+	if hit_points <= 0:
+		explode(enemy)
+
+func explode(enemy):
+	# send signal to the main script
+	enemy_destroyed.emit(enemy)
 
 func process(enemy, delta):
 	elapsed_time += delta

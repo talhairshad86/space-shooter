@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://fhx3n22aprju"]
+
+[ext_resource type="Script" uid="uid://dfy4w0xuv11xn" path="res://autoload/sound_manager.gd" id="1_vmyfj"]
+[ext_resource type="AudioStream" uid="uid://b1tggxyh0ohhg" path="res://sounds/bullet.wav" id="2_5qmgl"]
+[ext_resource type="AudioStream" uid="uid://b5qq4wwr7kvim" path="res://sounds/boom.wav" id="3_5qmgl"]
+[ext_resource type="AudioStream" uid="uid://bqm6qid3kpt8y" path="res://sounds/metal_hit.wav" id="4_v161e"]
+[ext_resource type="AudioStream" uid="uid://jt78n0jb04ic" path="res://sounds/rock_hit.mp3" id="5_rjaah"]
+[ext_resource type="AudioStream" uid="uid://bxu3cojql81w6" path="res://sounds/rock_2_hit.wav" id="6_rx1ey"]
+[ext_resource type="AudioStream" uid="uid://d02cpnmgvia7p" path="res://sounds/rock_3_hit.wav" id="7_culwi"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_vmyfj")
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5qmgl")
+volume_db = -10.0
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5qmgl")
+
+[node name="MetalHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v161e")
+
+[node name="RockHit1Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rjaah")
+
+[node name="RockHit2Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_rx1ey")
+
+[node name="RockHit3Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_culwi")
