@@ -14,3 +14,6 @@ func _on_area_entered(area: Area3D) -> void:
 		lifecycle.process_hit(self, area)
 		# remove the bullet
 		area.queue_free()
+
+func explode():
+	lifecycle.explode(self)

@@ -31,14 +31,14 @@ float random(vec2 pos) {
 float value_noise(vec2 pos) {
 	vec2 p = floor(pos);
 	vec2 f = fract(pos);
-	
+
 	float v00 = random(p + vec2(0.0, 0.0));
 	float v10 = random(p + vec2(1.0, 0.0));
 	float v01 = random(p + vec2(0.0, 1.0));
 	float v11 = random(p + vec2(1.0, 1.0));
-	
+
 	vec2 u = f * f * (3.0 - 2.0 * f);
-	
+
 	return mix(mix(v00, v10, u.x), mix(v01, v11, u.x), u.y);
 }
 
@@ -59,12 +59,12 @@ void fragment() {
 	float fire = clamp((1.0 - length(vec2(0.5, 0.5) - UV) * 2.0) * fire_power, 0.0, 1.0);
 	float fire_noise = fire * (((fire + fire_aperture) * noise_texture(UV * 3.0 + texture_speed * TIME * fire_speed) - fire_aperture) * 75.0);
 	vec4 fire_color = mix(fire_tip_color, fire_root_color, fire_noise * 0.5);
-	
+
 	float smoke = clamp((1.0 - length(vec2(0.5, 0.5) - UV) * 2.0) * smoke_power, 0.0, 1.0);
 	float smoke_noise_texel = noise_texture(UV + texture_speed * TIME * smoke_speed);
 	float smoke_noise = smoke * (((smoke + smoke_aperture) * smoke_noise_texel - smoke_aperture) * 75.0);
 	vec4 smoke_color = mix(smoke_color1, smoke_color2, clamp(smoke_noise_texel * 4.0 - 1.5, 0.0, 1.0));
-	
+
 	EMISSION = (
 		flash_color.rgb * flash
 		+ fire_color.rgb * clamp(fire_noise, 0.0, 1.0)

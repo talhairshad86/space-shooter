@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://clqfw8mxm538i"]
+[gd_scene load_steps=20 format=4 uid="uid://clqfw8mxm538i"]
 
 [ext_resource type="Texture2D" uid="uid://bmigeosa61a8j" path="res://models/player_color_palette.jpg" id="1_14u5s"]
 [ext_resource type="Script" uid="uid://dyttydsptcev3" path="res://scenes/player.gd" id="2_4bsma"]
@@ -181,9 +181,23 @@ shadow_mesh = SubResource("ArrayMesh_a3kcl")
 resource_local_to_scene = true
 radius = 7.0
 
-[node name="player" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
+transparency = 1
+albedo_color = Color(1, 0.788235, 1, 0.137255)
+metallic = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_dqkch"]
+material = SubResource("StandardMaterial3D_dqkch")
+radius = 10.0
+height = 18.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dqkch"]
+radius = 10.0
+
+[node name="player" type="CharacterBody3D" groups=["modules"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 collision_mask = 16
+axis_lock_linear_y = true
 script = ExtResource("2_4bsma")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -244,4 +258,15 @@ script = ExtResource("4_dqkch")
 [node name="Direction" type="Node3D" parent="Weapons/Right"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
+[node name="Shield" type="Area3D" parent="."]
+
+[node name="Sphere" type="MeshInstance3D" parent="Shield"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29069, 0.350571)
+mesh = SubResource("SphereMesh_dqkch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shield"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.529259, 0)
+shape = SubResource("SphereShape3D_dqkch")
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Shield" to="." method="_on_shield_area_entered"]

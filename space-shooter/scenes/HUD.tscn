@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0u8nqm6qhowi"]
+[gd_scene load_steps=3 format=3 uid="uid://d0u8nqm6qhowi"]
 
+[ext_resource type="Script" uid="uid://dmauf5fuegrte" path="res://scenes/hud.gd" id="1_fls4u"]
 [ext_resource type="FontFile" uid="uid://brgwdkfxroi3e" path="res://fonts/BrunoAceSC-Regular.ttf" id="1_lqljw"]
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_fls4u")
 
 [node name="Player" type="MarginContainer" parent="."]
 offset_right = 399.0
